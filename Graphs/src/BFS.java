@@ -15,6 +15,7 @@ public class BFS {
             // 5 Initialize adjacency list for each vertex.
             adjacencyList[i] = new LinkedList<>();
         }
+        // EACH VERTEX HAS A LIST OF ADJACENT VERTICES.
     }
 
     // Add edge to graph
