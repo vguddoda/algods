@@ -12,7 +12,7 @@ public class BFS {
         vertices = v;
         adjacencyList = new LinkedList[v];
         for (int i = 0; i < v; i++) {
-            // 5 Initialize adjacency list for each vertex
+            // 5 Initialize adjacency list for each vertex.
             adjacencyList[i] = new LinkedList<>();
         }
     }
