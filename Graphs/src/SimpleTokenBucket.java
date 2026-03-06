@@ -37,6 +37,19 @@ public class SimpleTokenBucket {
 
     /**
      * Atomic state reference for thread safety (CAS operations)
+     *
+     * LOCAL (this implementation):
+     *   - AtomicReference<State> in Java heap
+     *   - CAS loop with while(true) for retries
+     *   - Thread-safe within single JVM
+     *
+     * DISTRIBUTED (Bucket4j with Redis):
+     *   - Redis Hash: HSET bucket:user:123 tokens 5 last_refill 1708704000
+     *   - Lua script executes atomically (no retry loop needed!)
+     *   - Process-safe across multiple servers
+     *   - Redis single-threaded execution = built-in atomicity
+     *
+     * See RedisConcurrencyExplained.java for detailed comparison
      */
     private final AtomicReference<State> stateRef;
 
